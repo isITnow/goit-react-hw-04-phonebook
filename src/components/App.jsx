@@ -1,19 +1,19 @@
 // import React, { Component } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Form } from './Form';
 import { ContactsList } from './ContactsList';
 import { Filter } from './Filter';
 
-// const CONTACTS_LOCALSTORAGE_KEY = 'contacts';
+const CONTACTS_LOCALSTORAGE_KEY = 'contacts';
 
 export const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(() => {
+    return JSON.parse(localStorage.getItem(CONTACTS_LOCALSTORAGE_KEY)) ?? [];
+  });
   const [filter, stFilter] = useState('');
 
   const handleFormSubmit = profile => {
-    // const { contacts } = this.state;
-
     const nameToCheck = profile.name.toLocaleLowerCase();
     const isIncludeName = contacts.some(
       contact => contact.name.toLocaleLowerCase() === nameToCheck
@@ -31,7 +31,6 @@ export const App = () => {
   };
 
   const getFilteredContacts = () => {
-    // const { filter, contacts } = this.state;
     const normalizedContacts = filter.toLocaleLowerCase();
     return contacts.filter(({ name }) =>
       name.toLocaleLowerCase().includes(normalizedContacts)
@@ -39,12 +38,15 @@ export const App = () => {
   };
 
   const handleDeleteContact = id => {
-    // const { contacts } = this.state;
     const updatedContacts = contacts.filter(contact => contact.id !== id);
     setContacts(updatedContacts);
   };
 
   const filteredContacts = getFilteredContacts();
+
+  useEffect(() => {
+    localStorage.setItem(CONTACTS_LOCALSTORAGE_KEY, JSON.stringify(contacts));
+  }, [contacts]);
 
   return (
     <div
