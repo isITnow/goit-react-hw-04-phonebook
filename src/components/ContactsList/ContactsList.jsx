@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import s from './ContactsList.module.css';
-import ContactsItem from './ContactsItem';
+import { ContactsItem } from '././ContactsItem';
 
-export default function ContactsList({ contacts, onDelete }) {
+export const ContactsList = ({ contacts, onDelete }) => {
   if (!contacts.length) {
     return <p>User not found</p>;
   }
@@ -22,7 +22,7 @@ export default function ContactsList({ contacts, onDelete }) {
       })}
     </ul>
   );
-}
+};
 
 ContactsList.propTypes = {
   onDelete: PropTypes.func.isRequired,

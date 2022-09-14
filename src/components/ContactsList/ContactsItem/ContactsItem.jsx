@@ -1,7 +1,7 @@
 import s from './ContactsItem.module.css';
-
 import PropTypes from 'prop-types';
-export default function ContactsItem({ name, number, id, onDelete }) {
+
+export const ContactsItem = ({ name, number, id, onDelete }) => {
   return (
     <li className={s.contact__item}>
       <span>{name}:</span>
@@ -11,7 +11,7 @@ export default function ContactsItem({ name, number, id, onDelete }) {
       </button>
     </li>
   );
-}
+};
 
 ContactsItem.propTypes = {
   onDelete: PropTypes.func.isRequired,
