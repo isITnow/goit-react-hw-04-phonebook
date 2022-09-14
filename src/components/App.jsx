@@ -5,7 +5,7 @@ import { Form } from './Form';
 import { ContactsList } from './ContactsList';
 import { Filter } from './Filter';
 
-const CONTACTS_LOCALSTORAGE_KEY = 'contacts';
+// const CONTACTS_LOCALSTORAGE_KEY = 'contacts';
 
 export const App = () => {
   const [contacts, setContacts] = useState([]);
