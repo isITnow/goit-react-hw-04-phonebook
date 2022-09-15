@@ -8,8 +8,8 @@ export const Form = ({ onFormSubmit }) => {
   const [number, setNumber] = useState('');
 
   const handleInputChange = evt => {
-    const name = evt.currentTarget.name;
-    const value = evt.currentTarget.value;
+    const { name } = evt.currentTarget;
+    const { value } = evt.currentTarget;
 
     switch (name) {
       case 'name':
