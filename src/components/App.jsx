@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Form } from './Form';
@@ -43,12 +43,12 @@ export const App = () => {
     stFilter(value);
   };
 
-  const getFilteredContacts = () => {
+  const getFilteredContacts = useMemo(() => {
     const normalizedContacts = filter.toLocaleLowerCase();
     return contacts.filter(({ name }) =>
       name.toLocaleLowerCase().includes(normalizedContacts)
     );
-  };
+  }, [contacts, filter]);
 
   const handleDeleteContact = id => {
     const updatedContacts = contacts.filter(contact => contact.id !== id);
