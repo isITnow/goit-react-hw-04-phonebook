@@ -43,7 +43,7 @@ export const App = () => {
     stFilter(value);
   };
 
-  const getFilteredContacts = useMemo(() => {
+  const filteredContacts = useMemo(() => {
     const normalizedContacts = filter.toLocaleLowerCase();
     return contacts.filter(({ name }) =>
       name.toLocaleLowerCase().includes(normalizedContacts)
@@ -55,7 +55,7 @@ export const App = () => {
     setContacts(updatedContacts);
   };
 
-  const filteredContacts = getFilteredContacts();
+  // const filteredContacts = getFilteredContacts();
 
   useEffect(() => {
     localStorage.setItem(CONTACTS_LOCALSTORAGE_KEY, JSON.stringify(contacts));
